@@ -172,7 +172,7 @@ function frmContenedor() {
     $("#nuevoContenedor").modal("show");
 }
 
-function btnReingresarReceta(id) {
+function btnReingresarContenedor(id) {
     Swal.fire({
         title: 'Esta seguro de reingresar?',
         icon: 'warning',
@@ -183,14 +183,14 @@ function btnReingresarReceta(id) {
         cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Recetas/reingresar/" + id;
+            const url = base_url + "Contenedor/reingresar/" + id;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const res = JSON.parse(this.responseText);
-                    tblRecetas.ajax.reload();
+                    tblContenedor.ajax.reload();
                     alertas(res.msg, res.icono);
                 }
             }

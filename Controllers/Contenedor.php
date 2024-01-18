@@ -121,9 +121,9 @@ class Contenedor extends Controller
 
     public function reingresar($id)
     {
-        $data = $this->model->estadoReceta(1, $id);
+        $data = $this->model->estadoContenedor(1, $id);
         if ($data == 1) {
-            $msg = array('msg' => 'Receta restaurada', 'icono' => 'success');
+            $msg = array('msg' => 'Contenedor restaurada', 'icono' => 'success');
         } 
         else if($data == 2){
             $msg = array('msg' => 'ya existe una receta con ese nombre', 'icono' => 'error');
