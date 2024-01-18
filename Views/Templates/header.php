@@ -87,6 +87,7 @@
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Hrecetas"><i class="icon fa fa-user-o"></i> Recetas</a></li>
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Hcategorias"><i class="icon fa fa-user-o"></i> Categorias</a></li>
+                    <li><a class="treeview-item" href="<?php echo base_url; ?>Harea"><i class="icon fa fa-user-o"></i> Area</a></li>
 
                     <!--<li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li> -->
                 </ul>
@@ -111,6 +112,11 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Categorias</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" target="_blank" href="<?php echo base_url; ?>Categorias"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
+                </ul>
+            </li>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Areas</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" target="_blank" href="<?php echo base_url; ?>Area"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
                 </ul>
             </li>
         </ul>

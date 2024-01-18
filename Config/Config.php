@@ -1,9 +1,9 @@
 <?php
 const base_url = "/biblio/";
 //const base_url ="";
-const host = "localhost:3307";
+const host = "localhost:3306";
 const user = "root";
-const pass = "Lpmp2018";
+const pass = "";
 const db = "biblio";
 const charset = "charset=utf8";
 ?>
