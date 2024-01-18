@@ -19,7 +19,7 @@ class Harea extends Controller
     }
     public function index()
     {
-        $this->views->getView("Historial", "area");
+        $this->views->getView("Historial","area");
     }
     public function listar()
     {
