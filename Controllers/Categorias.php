@@ -10,10 +10,10 @@ class Categorias extends Controller
         }
         parent::__construct();
         $id_user = $_SESSION['id_usuario'];
-        // verificacion del permiso 
+        // verificacion del permiso
         $perm = $this->model->verificarPermisos($id_user, "Categorias");
         if (!$perm && $id_user != 1) {
-            // no tines permiso 
+            // no tines permiso
             $this->views->getView($this, "permisos");
             exit;
         }
@@ -61,11 +61,11 @@ class Categorias extends Controller
         $descripcion_categoria = strClean($_POST['descripcion_categoria']);
         $usuario_activo = $_SESSION['id_usuario'];
         $id = strClean($_POST['id']);
-        if (empty($nombre_categoria)) {
-            $msg = array('msg' => 'El nombre de Categoria es requerido', 'icono' => 'warning');
+        if (empty($nombre_categoria)|| empty($descripcion_categoria)) {
+            $msg = array('msg' => 'LLenar los campos requeridos requerido', 'icono' => 'warning');
         } else {
             if ($id == "") {
-                //se guarda si id es vacio 
+                //se guarda si id es vacio
                 $data = $this->model->insertarCategoria($nombre_categoria,$descripcion_categoria,$usuario_activo);
                 if ($data == "ok") {
                     // guardar los datos en el historico de receta
@@ -83,34 +83,39 @@ class Categorias extends Controller
                 }
             } else {
                 // se actualiza si id tiene informacion
+
                 $data = $this->model->actualizarCategoria($nombre_categoria,$descripcion_categoria,$usuario_activo, $id);
                 if ($data == "modificado") {
-                    // guardar los datos en el historico de receta}
+                    // guardar los datos en el historico de receta
                     $evento="MODIFICADO";
                     $data2 = $this->model->h_categoria($id,$nombre_categoria,$descripcion_categoria,$usuario_activo,$evento );
                     $msg = array('msg' => 'Categoria modificado', 'icono' => 'success');
-                } else if($data==2){
-                    $msg = array('msg' => 'ya existe una categoria con ese nombre', 'icono' => 'error');
+                } else {
+
+                    var_dump($data);
+
+                    // $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                    // $msg = array('msg' => 'ya existe una categoria con ese nombre', 'icono' => 'error');
 
                 }
-                
-                else {
-                    $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
-                }
+
+                // else {
+                //     $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                // }
             }
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
-    } 
+    }
     public function eliminar($id)
     {
-        // primero debemos  consultar la informacion con el id que tenemos 
+        // primero debemos  consultar la informacion con el id que tenemos
         //para obtenr todos los datos
         $data = $this->model->estadoCategoria(0, $id);
         if ($data == 1) {
             $msg = array('msg' => 'Categoria dado de baja', 'icono' => 'success');
-        } 
-        
+        }
+
         else {
             $msg = array('msg' => 'Error al eliminar', 'icono' => 'error');
         }
@@ -123,12 +128,12 @@ class Categorias extends Controller
         $data = $this->model->estadoCategoria(1, $id);
         if ($data == 1) {
             $msg = array('msg' => 'Categoria restaurada', 'icono' => 'success');
-        } 
+        }
         else if($data == 2){
             $msg = array('msg' => 'ya existe una categoria con ese nombre', 'icono' => 'error');
 
         }
-       
+
         else {
             $msg = array('msg' => 'Error al restaurar', 'icono' => 'error');
         }

@@ -62,7 +62,7 @@ class Recetas extends Controller
         $descripcion_receta = strClean($_POST['descripcion_receta']);
         $usuario_activo = $_SESSION['id_usuario'];
         $id = strClean($_POST['id']);
-        if (empty($nombre_receta)) {
+        if (empty($nombre_receta) || empty($codigo_receta)||empty($descripcion_receta)) {
             $msg = array('msg' => 'El nombre de Receta es requerido', 'icono' => 'warning');
         } else {
             if ($id == "") {

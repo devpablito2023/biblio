@@ -62,7 +62,7 @@ class Contenedor extends Controller
         $descripcion_contenedor = strClean($_POST['descripcion_contenedor']);
         $usuario_activo = $_SESSION['id_usuario'];
         $id = strClean($_POST['id']);
-        if (empty($tipo_contenedor)) {
+        if (empty($tipo_contenedor) || empty($codigo_contenedor) || empty($descripcion_contenedor) ) {
             $msg = array('msg' => 'El tipo del contenedor es requerido', 'icono' => 'warning');
         } else {
             if ($id == "") {

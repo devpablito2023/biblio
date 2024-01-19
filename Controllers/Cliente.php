@@ -64,8 +64,8 @@ class Cliente extends Controller
         $tiempo_contrato = strClean($_POST['tiempo_contrato']);
         $usuario_activo = $_SESSION['id_usuario'];
         $id = strClean($_POST['id']);
-        if (empty($nombre_cliente)) {
-            $msg = array('msg' => 'El nombre del Cliente es requerido', 'icono' => 'warning');
+        if (empty($nombre_cliente) || empty($codigo_cliente) || empty($contacto_cliente) || empty($telefono_cliente) || empty($email_cliente) || empty($tiempo_contrato) ) {
+            $msg = array('msg' => 'Llenar los datos requeridos', 'icono' => 'warning');
         } else {
             if ($id == "") {
                 //se guarda si id es vacio 

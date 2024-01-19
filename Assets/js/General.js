@@ -182,6 +182,7 @@ function frmGeneral() {
     document.getElementById("btnAccion").textContent = "Registrar";
     document.getElementById("frmGeneral").reset();
     document.getElementById("id").value = "";
+
     $("#nuevoGeneral").modal("show");
 }
 

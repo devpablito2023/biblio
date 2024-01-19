@@ -64,8 +64,8 @@ class General extends Controller
         $correo_general = strClean($_POST['correo_general']);
         $usuario_activo = $_SESSION['id_usuario'];
         $id = strClean($_POST['id']);
-        if (empty($nombre_General)) {
-            $msg = array('msg' => 'El nombre General es requerido', 'icono' => 'warning');
+        if (empty($nombre_General) || empty($ruc_general) ||empty($telefono_general) || empty($direccion_general) || empty($logo_general) || empty($correo_general)) {
+            $msg = array('msg' => 'Llenar los datos requerido', 'icono' => 'warning');
         } else {
             if ($id == "") {
                 //se guarda si id es vacio 

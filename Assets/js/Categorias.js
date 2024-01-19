@@ -137,7 +137,7 @@ function btnEliminarCategoria(id) {
 
 function registrarCategoria(e) {
     e.preventDefault();
-    const nombre_receta = document.getElementById("nombre_categoria");
+    const nombre_categoria = document.getElementById("nombre_categoria");
     if (nombre_categoria.value == "") {
         alertas('El Nombre de la Receta es requerida', 'warning');
     } else {
