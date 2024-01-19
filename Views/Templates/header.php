@@ -101,6 +101,7 @@
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Hcliente"><i class="icon fa fa-user-o"></i> Cliente</a></li>
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Hmaquina"><i class="icon fa fa-user-o"></i> Maquina</a></li>
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Halmacen"><i class="icon fa fa-user-o"></i> Almacen</a></li>
+                        <li><a class="treeview-item" href="<?php echo base_url; ?>Hgeneral"><i class="icon fa fa-user-o"></i> General</a></li>
                        
 
                         <!--<li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li> -->
@@ -156,6 +157,11 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Almacen</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Almacen"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
+                </ul>
+            </li>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">General</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="<?php echo base_url; ?>General"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
                 </ul>
             </li>
         </ul>
