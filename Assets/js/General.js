@@ -1,4 +1,4 @@
-let tblMaquina;
+let tblGeneral;
 
 function alertas(msg, icono) {
     Swal.fire({
@@ -60,41 +60,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     ]
 
-    tblMaquina = $('#tblMaquina').DataTable({
+    tblGeneral = $('#tblGeneral').DataTable({
         ajax: {
-            url: base_url + "Maquina/listar",
+            url: base_url + "General/listar",
             dataSrc: ''
         },
-        columns: [{
-            'data': 'id'
-        },
-        {
-            'data': 'codigo'
-        },
-        {
-            'data': 'producto'
-        },
-        {
-            'data': 'marca'
-        },
-        {
-            'data': 'modelo'
-        },
-        {
-            'data': 'regrigerante'
-        },
-        {
-            'data': 'serie'
-        },
-        {
-            'data': 'controlador'
-        },
-        {
-            'data': 'estado'
-        },
-        {
-            'data': 'acciones'
-        }
+        columns: [
+            {
+                'data': 'id'
+            },
+            {
+                'data': 'nombre_empresa'
+            },
+            {
+                'data': 'ruc'
+            },
+            {
+                'data': 'telefono'
+            },
+            {
+                'data': 'direccion'
+            },
+            {
+                'data': 'logo'
+            },
+            {
+                'data': 'correo'
+            },
+            {
+                'data': 'estado'
+            },
+            {
+                'data': 'acciones'
+            }
         ],
         language,
         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
@@ -105,10 +103,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 })
 
-function btnEditarMaquina(id) {
-    document.getElementById("title").textContent = "Actualizar Maquina";
+function btnEditarGeneral(id) {
+    document.getElementById("title").textContent = "Actualizar General";
     document.getElementById("btnAccion").textContent = "Modificar";
-    const url = base_url + "Maquina/editar/" + id;
+    const url = base_url + "General/editar/" + id;
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
     http.send();
@@ -116,23 +114,22 @@ function btnEditarMaquina(id) {
         if (this.readyState == 4 && this.status == 200) {
             const res = JSON.parse(this.responseText);
             document.getElementById("id").value = res.id;
-            document.getElementById("codigo").value = res.codigo;
-            document.getElementById("producto").value = res.producto;
-            document.getElementById("marca").value = res.marca;
-            document.getElementById("modelo").value = res.modelo;
-            document.getElementById("Refrigerante").value = res.regrigerante;
-            document.getElementById("serie").value = res.serie;
-            document.getElementById("controlador").value = res.controlador;
+            document.getElementById("nombre_General").value = res.nombre_empresa;
+            document.getElementById("ruc_general").value = res.ruc;
+            document.getElementById("telefono_general").value = res.telefono;
+            document.getElementById("direccion_general").value = res.direccion;
+            document.getElementById("logo_general").value = res.logo;
+            document.getElementById("correo_general").value = res.correo;
 
-            $("#nuevoMaquina").modal("show");
+            $("#nuevoGeneral").modal("show");
         }
     }
 }
 
-function btnEliminarMaquina(id) {
+function btnEliminarGeneral(id) {
     Swal.fire({
         title: 'Esta seguro de eliminar?',
-        text: "La Maquina no se eliminará de forma permanente",
+        text: "La General no se eliminará de forma permanente",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -141,14 +138,14 @@ function btnEliminarMaquina(id) {
         cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Maquina/eliminar/" + id;
+            const url = base_url + "General/eliminar/" + id;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const res = JSON.parse(this.responseText);
-                    tblMaquina.ajax.reload();
+                    tblGeneral.ajax.reload();
                     alertas(res.msg, res.icono);
                 }
             }
@@ -157,45 +154,38 @@ function btnEliminarMaquina(id) {
     })
 }
 
-function registrarMaquina(e) {
+function registrarGeneral(e) {
     e.preventDefault();
-    const codigo = document.getElementById("codigo");
-    const producto = document.getElementById("producto");
-    const marca = document.getElementById("marca");
-    const modelo = document.getElementById("modelo");
-    const Refrigerante = document.getElementById("Refrigerante");
-    const serie = document.getElementById("serie");
-    const controlador = document.getElementById("controlador");
-    if (codigo.value == "" || producto.value == "" || marca.value == ""
-        || modelo.value == "" || Refrigerante.value == "" || serie.value == "" || controlador.value == "") {
-        alertas('Todo los campos son requeridos', 'warning');
+    const nombre_General = document.getElementById("nombre_General");
+    if (nombre_General.value == "") {
+        alertas('El Nombre General es requerido', 'warning');
     } else {
-        const url = base_url + "Maquina/registrar";
-        const frm = document.getElementById("frmMaquina");
+        const url = base_url + "General/registrar";
+        const frm = document.getElementById("frmGeneral");
         const http = new XMLHttpRequest();
         http.open("POST", url, true);
         http.send(new FormData(frm));
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const res = JSON.parse(this.responseText);
-                $("#nuevoMaquina").modal("hide");
+                $("#nuevoGeneral").modal("hide");
                 frm.reset();
-                tblMaquina.ajax.reload();
+                tblGeneral.ajax.reload();
                 alertas(res.msg, res.icono);
             }
         }
     }
 }
 
-function frmMaquina() {
-    document.getElementById("title").textContent = "Nueva Maquina";
+function frmGeneral() {
+    document.getElementById("title").textContent = "Nueva General";
     document.getElementById("btnAccion").textContent = "Registrar";
-    document.getElementById("frmMaquina").reset();
+    document.getElementById("frmGeneral").reset();
     document.getElementById("id").value = "";
-    $("#nuevoMaquina").modal("show");
+    $("#nuevoGeneral").modal("show");
 }
 
-function btnReingresarMaquina(id) {
+function btnReingresarGeneral(id) {
     Swal.fire({
         title: 'Esta seguro de reingresar?',
         icon: 'warning',
@@ -206,14 +196,14 @@ function btnReingresarMaquina(id) {
         cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Maquina/reingresar/" + id;
+            const url = base_url + "General/reingresar/" + id;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const res = JSON.parse(this.responseText);
-                    tblMaquina.ajax.reload();
+                    tblGeneral.ajax.reload();
                     alertas(res.msg, res.icono);
                 }
             }
