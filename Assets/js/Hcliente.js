@@ -1,6 +1,6 @@
 let tblHcliente;
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function(){
     const language = {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -22,69 +22,70 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-    const buttons = [{
-        //Botón para Excel
-        extend: 'excel',
-        footer: true,
-        title: 'Archivo',
-        filename: 'Export_File',
+    const  buttons = [{
+                //Botón para Excel
+                extend: 'excel',
+                footer: true,
+                title: 'Archivo',
+                filename: 'Export_File',
 
-        //Aquí es donde generas el botón personalizado
-        text: '<button class="btn btn-success"><i class="fa fa-file-excel-o"></i></button>'
-    },
-    //Botón para PDF
-    {
-        extend: 'pdf',
-        footer: true,
-        title: 'Archivo PDF',
-        filename: 'reporte',
-        text: '<button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></button>'
-    },
-    //Botón para print
-    {
-        extend: 'print',
-        footer: true,
-        title: 'Reportes',
-        filename: 'Export_File_print',
-        text: '<button class="btn btn-info"><i class="fa fa-print"></i></button>'
-    }
-    ]
+                //Aquí es donde generas el botón personalizado
+                text: '<button class="btn btn-success"><i class="fa fa-file-excel-o"></i></button>'
+            },
+            //Botón para PDF
+            {
+                extend: 'pdf',
+                footer: true,
+                title: 'Archivo PDF',
+                filename: 'reporte',
+                text: '<button class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></button>'
+            },
+            //Botón para print
+            {
+                extend: 'print',
+                footer: true,
+                title: 'Reportes',
+                filename: 'Export_File_print',
+                text: '<button class="btn btn-info"><i class="fa fa-print"></i></button>'
+            }
+        ]
 
-    tblHcliente = $('#tblHcliente').DataTable({
+        tblHcliente = $('#tblHcliente').DataTable({
         ajax: {
             url: base_url + "Hcliente/listar",
             dataSrc: ''
         },
-        columns: [{
-            'data': 'cliente_id'
-        },
-        {
-            'data': 'codigo_cliente'
-        },
-        {
-            'data': 'cliente'
-        },
-        {
-            'data': 'contacto'
-        },
-        {
-            'data': 'telefono'
-        },
-        {
-            'data': 'email'
-        },
-        {
-            'data': 'tiempo_contrato'
-        },
-        {
-            'data': 'nombre'
-        },
-        {
-            'data': 'fecha'
-        },
-        {
-            'data': 'evento'
-        }
+        columns: [
+            {
+                'data': 'cliente_id'
+            },
+            {
+                'data': 'codigo_cliente'
+            },
+            {
+                'data': 'cliente'
+            },
+            {
+                'data': 'contacto'
+            },
+            {
+                'data': 'telefono'
+            },
+            {
+                'data': 'email'
+            },
+            {
+                'data': 'tiempo_contrato'
+            },         
+            {
+                'data': 'nombre'
+            },
+            {
+                'data': 'fecha'
+            },
+            {
+                'data': 'evento'
+            }
         ],
         language,
         dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +

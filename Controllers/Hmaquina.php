@@ -1,5 +1,5 @@
 <?php
-class Hcliente extends Controller
+class Hmaquina extends Controller
 {
     public function __construct()
     {
@@ -19,11 +19,11 @@ class Hcliente extends Controller
     }
     public function index()
     {
-        $this->views->getView("Historial", "cliente");
+        $this->views->getView("Historial", "maquina");
     }
     public function listar()
     {
-        $data = $this->model->getRecetas();
+        $data = $this->model->getMaquina();
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }

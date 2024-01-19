@@ -16,6 +16,7 @@
                                 <th>Id</th>
                                 <th>codigo</th>
                                 <th>tipo contenedor	</th>
+                               
                                 <th>descripcion</th>
                                 <th>Usuario</th>
                                 <th>Fecha</th>

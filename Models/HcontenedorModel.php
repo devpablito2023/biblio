@@ -15,7 +15,7 @@ class HcontenedorModel extends Query
         }
         return $tiene;
     }
-    public function getRecetas()
+    public function getContenedor()
     {
         // si es 1 
             $sql = "SELECT h.* , u.nombre FROM h_contenedor h INNER JOIN usuarios u ON h.user = u.id";
