@@ -132,6 +132,16 @@ class Cliente extends Controller
         die();
     }
 
+    public function buscarCliente()
+    {
+        if (isset($_GET['c'])) {
+            $valor = $_GET['c'];
+            $data = $this->model->buscarCliente($valor);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
 }
 
 ?>

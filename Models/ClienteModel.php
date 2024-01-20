@@ -145,6 +145,13 @@ class ClienteModel extends Query
         return $res;
     }
 
+    public function buscarCliente($valor)
+    {
+        $sql = "SELECT id, cliente AS text FROM cliente WHERE cliente LIKE '%" . $valor . "%'  AND estado = 1 LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
 }
 
 ?>

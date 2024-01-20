@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
         buttons
     });
 
+
+
 })
 
 function btnEditarCliente(id) {
@@ -211,3 +213,23 @@ function btnReingresarCliente(id) {
         }
     })
 }
+
+$('.cliente').select2({
+    placeholder: 'Buscar Cliente',
+    ajax: {
+        url: base_url + 'Cotizacion/buscarCliente',
+        dataType: 'json',
+        delay: 100,
+        data: function (params) {
+            return {
+                q: params.term
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+});
