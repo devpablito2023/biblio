@@ -40,11 +40,6 @@ class Recetas extends Controller
                 <div/>';
             }
         }
-
-
-
-
-
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
@@ -128,8 +123,7 @@ class Recetas extends Controller
         else if($data == 2){
             $msg = array('msg' => 'ya existe una receta con ese nombre', 'icono' => 'error');
 
-        }
-       
+        }  
         else {
             $msg = array('msg' => 'Error al restaurar', 'icono' => 'error');
         }

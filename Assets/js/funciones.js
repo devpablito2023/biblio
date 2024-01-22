@@ -1,4 +1,6 @@
+
 let tblUsuarios, tblEst, tblMateria, tblAutor, tblEditorial, tblLibros, tblPrestar;
+
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelector("#modalPass").addEventListener("click", function () {
         document.querySelector('#frmCambiarPass').reset();
@@ -197,10 +199,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 'data': 'autor'
             },
             {
-                'data': 'autor'
+                'data': 'editorial'
             },
             {
-                'data': 'editorial'
+                'data': ''
             },
             {
                 'data': 'foto'
@@ -308,14 +310,19 @@ document.addEventListener("DOMContentLoaded", function(){
                 cache: true
             }
     });
+
+
     $('.autor').select2({
         placeholder: 'Buscar Autor',
         minimumInputLength: 2,
+        allowClear: true,
         ajax: {
             url: base_url + 'Autor/buscarAutor',
             dataType: 'json',
-            delay: 250,
+            delay: 250, 
             data: function (params) {
+                
+                console.log(params);        
                 return {
                     q: params.term
                 };
@@ -327,6 +334,10 @@ document.addEventListener("DOMContentLoaded", function(){
             },
             cache: true
         }
+    });
+// para borrar lo cargado de forma predefinada 
+    $('.autor').on('select2:open', function (e) { 
+        $('.autor').val(null).trigger('change');
     });
     $('.editorial').select2({
         placeholder: 'Buscar Editorial',
@@ -348,6 +359,10 @@ document.addEventListener("DOMContentLoaded", function(){
             cache: true
         }
     });
+    // para borrar lo cargado de forma predefinada 
+    $('.editorial').on('select2:open', function (e) { 
+        $('.editorial').val(null).trigger('change');
+    });
     $('.materia').select2({
         placeholder: 'Buscar Materia',
         minimumInputLength: 2,
@@ -368,6 +383,10 @@ document.addEventListener("DOMContentLoaded", function(){
             cache: true
         }
     });
+        // para borrar lo cargado de forma predefinada 
+        $('.materia').on('select2:open', function (e) { 
+            $('.materia').val(null).trigger('change');
+        });
 
     if (document.getElementById('nombre_estudiante')) {
         const http = new XMLHttpRequest();
@@ -968,6 +987,7 @@ function registrarLibro(e) {
 }
 
 function btnEditarLibro(id) {
+
     document.getElementById("title").textContent = "Actualizar Libro";
     document.getElementById("btnAccion").textContent = "Modificar";
     const url = base_url + "Libros/editar/" + id;
@@ -977,9 +997,31 @@ function btnEditarLibro(id) {
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const res = JSON.parse(this.responseText);
+            console.log(res);
               document.getElementById("id").value = res.id;
               document.getElementById("titulo").value = res.titulo;
-              document.getElementById("autor").value = res.id_autor;
+                if($('.autor').val(0)==true){
+                }else{
+                    /*
+                    var dataAutor = {
+                        id: 0,
+                        text: 'seleccion autor'
+                    };                  
+                    var newOption = new Option(dataAutor.text, dataAutor.id,false,false);
+                     */
+                    var newOption = new Option(res.textAutor, res.id_autor,false,false);
+                    $('.autor').append(newOption).trigger("change");
+                }
+                if($('.editorial').val(0)==true){
+                }else{
+                    var newOption = new Option(res.textEditorial, res.id_editorial,false,false);
+                    $('.editorial').append(newOption).trigger("change");
+                }
+                if($('.materia').val(0)==true){
+                }else{
+                    var newOption = new Option(res.textMateria, res.id_materia,false,false);
+                    $('.materia').append(newOption).trigger("change");
+                }
               document.getElementById("editorial").value = res.id_editorial;
               document.getElementById("materia").value = res.id_materia;
               document.getElementById("cantidad").value = res.cantidad;

@@ -1,7 +1,7 @@
 <?php
 class LibrosModel extends Query
 {
-    public function __construct()
+    public function __construct() 
     {
         parent::__construct();
     }
@@ -31,9 +31,15 @@ class LibrosModel extends Query
     }
     public function editLibros($id)
     {
-        $sql = "SELECT * FROM libro WHERE id = $id";
+        $sql = "SELECT l.* , a.autor AS textAutor , e.editorial  AS textEditorial , m.materia AS textMateria FROM libro l INNER JOIN autor a  ON l.id_autor = a.id  INNER JOIN editorial e ON l.id_editorial = e.id INNER JOIN materia m ON l.id_materia = m.id WHERE l.id = $id";
         $res = $this->select($sql);
         return $res;
+/*
+        $sql = "SELECT id, autor AS text FROM autor WHERE autor LIKE '%" . $valor . "%'  AND estado = 1 LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+
+*/
     }
     public function actualizarLibros($titulo, $id_autor, $id_editorial, $id_materia, $cantidad, $num_pagina, $anio_edicion, $descripcion, $imgNombre, $id)
     {

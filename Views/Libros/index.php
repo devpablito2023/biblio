@@ -1,4 +1,5 @@
 <?php include "Views/Templates/header.php"; ?>
+
 <div class="app-title">
     <div>
         <h1><i class="fa fa-dashboard"></i> Libros</h1>
@@ -35,6 +36,7 @@
 </div>
 
 <div id="nuevoLibro" class="modal fade" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -44,8 +46,10 @@
                 </button>
             </div>
             <div class="modal-body">
+         
                 <form id="frmLibro" class="row" onsubmit="registrarLibro(event)">
                     <div class="col-md-8">
+
                         <div class="form-group">
                             <label for="titulo">Título</label>
                             <input type="hidden" id="id" name="id">
@@ -56,8 +60,10 @@
                         <div class="form-group">
                             <label for="autor">Autor</label><br>
                             <select id="autor" class="form-control autor" name="autor" required style="width: 100%;">
-                                
-                            </select>
+                            <!--<option id="selectAutor" value="0">Seleccione</option> -->
+                            </select> 
+
+
                         </div>
                     </div>
                     <div class="col-md-4">
