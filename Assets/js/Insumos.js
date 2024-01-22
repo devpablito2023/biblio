@@ -1,4 +1,4 @@
-let tblInsumos ; 
+let tblInsumos; 
 function alertas(msg, icono) {
     Swal.fire({
         position: 'top-end',

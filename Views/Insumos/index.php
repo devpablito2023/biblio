@@ -18,7 +18,7 @@
                                 <th>Código</th>
                                 <th>Insumo</th>
                                 <th>Categoria</th>
-                                <th>Almacen</th>
+                                <!-- <th>Almacen</th> -->
                                 <th>Foto</th>
                                 <th>Estado</th>
                                 <th></th>
