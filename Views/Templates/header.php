@@ -169,6 +169,11 @@
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Cotizacion"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
                 </ul>
             </li>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Insumos</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="<?php echo base_url; ?>Insumos"><i class="icon fa fa-file-pdf-o"></i> Listar</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
     <main class="app-content">
