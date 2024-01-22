@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
     }
-    const  buttons = [{
+    const  buttons = [{s
                 //Botón para Excel
                 extend: 'excel',
                 footer: true,
