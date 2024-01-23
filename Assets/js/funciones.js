@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 })
-
+//sssss
 function frmUsuario() {
     document.getElementById("title").textContent = "Nuevo Usuario";
     document.getElementById("btnAccion").textContent = "Registrar";
@@ -402,6 +402,7 @@ function frmUsuario() {
     document.getElementById("id").value = "";
     $("#nuevo_usuario").modal("show");
 }
+//sssss
 function registrarUser(e) {
     e.preventDefault();
     const usuario = document.getElementById("usuario");
@@ -427,6 +428,7 @@ function registrarUser(e) {
         }
     }
 }
+//sssss
 function btnEditarUser(id) {
     document.getElementById("title").textContent = "Actualizar usuario";
     document.getElementById("btnAccion").textContent = "Modificar";
@@ -445,6 +447,7 @@ function btnEditarUser(id) {
         }
     }
 }
+//sssss
 function btnEliminarUser(id) {
     Swal.fire({
         title: 'Esta seguro de eliminar?',
@@ -472,6 +475,7 @@ function btnEliminarUser(id) {
         }
     })
 }
+//sssss
 function btnReingresarUser(id) {
     Swal.fire({
         title: 'Esta seguro de reingresar?',
@@ -1160,6 +1164,7 @@ function registroPrestamos(e){
         }
     }
 }
+//sssss
 function btnRolesUser(id) {
     const http = new XMLHttpRequest();
     const url = base_url + "Usuarios/permisos/" + id;
@@ -1172,6 +1177,7 @@ function btnRolesUser(id) {
         }
     }
 }
+//sssss
 function registrarPermisos(e) {
     e.preventDefault();
     const http = new XMLHttpRequest();
@@ -1191,6 +1197,7 @@ function registrarPermisos(e) {
         }
     }
 }
+//
 function modificarClave(e) {
     e.preventDefault();
     var formClave = document.querySelector("#frmCambiarPass");

@@ -106,7 +106,7 @@
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Hempleados"><i class="icon fa fa-user-o"></i> Empleados</a></li>
                        
 
-                        <!--<li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li> -->
+                        <li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li> 
                     </ul>
                 </li>
 
