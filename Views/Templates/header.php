@@ -102,6 +102,7 @@
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Hmaquina"><i class="icon fa fa-user-o"></i> Maquina</a></li>
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Halmacen"><i class="icon fa fa-user-o"></i> Almacen</a></li>
                         <li><a class="treeview-item" href="<?php echo base_url; ?>Hgeneral"><i class="icon fa fa-user-o"></i> General</a></li>
+                        <li><a class="treeview-item" href="<?php echo base_url; ?>Hcotizacion"><i class="icon fa fa-user-o"></i> Cotizacion</a></li>
                        
 
                         <!--<li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li> -->

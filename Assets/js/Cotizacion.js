@@ -253,10 +253,10 @@ function btnEditarCotizacion(id) {
     }
 }
 
-function btnEliminarInsumo(id) {
+function btnEliminarCotizacion(id) {
     Swal.fire({
         title: 'Esta seguro de eliminar?',
-        text: "El Insumo no se eliminará de forma permanente, solo cambiará el estado a inactivo!",
+        text: "La Cotizacion no se eliminará de forma permanente, solo cambiará el estado a inactivo!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -265,21 +265,21 @@ function btnEliminarInsumo(id) {
         cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Insumos/eliminar/" + id;
+            const url = base_url + "Cotizacion/eliminar/" + id;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const res = JSON.parse(this.responseText);
-                    tblInsumos.ajax.reload();
+                    tblCotizacion.ajax.reload();
                     alertas(res.msg, res.icono);
                 }
             }
         }
     })
 }
-function btnReingresarInsumo(id) {
+function btnReingresarCotizacion(id) {
     Swal.fire({
         title: 'Esta seguro de reingresar?',
         icon: 'warning',
@@ -290,14 +290,14 @@ function btnReingresarInsumo(id) {
         cancelButtonText: 'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Insumos/reingresar/" + id;
+            const url = base_url + "Cotizacion/reingresar/" + id;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     const res = JSON.parse(this.responseText);
-                    tblInsumos.ajax.reload();
+                    tblCotizacion.ajax.reload();
                     alertas(res.msg, res.icono);
                 }
             }

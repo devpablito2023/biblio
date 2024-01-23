@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 'data': 'nombre_categoria'
             },
             {
-                'data': 'nombre_almacen'
+                'data': 'descripcion'
             },
             {
                 'data': 'foto'

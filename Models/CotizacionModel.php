@@ -78,42 +78,30 @@ class CotizacionModel extends Query
         }
         return $res;
     }
-    public function estadoInsumo($estado, $id)
+    public function estadoCotizacion($estado, $id)
     {
         // primero seleccionamos los datos 
-        $tomar_datos = "SELECT * FROM insumo WHERE id = '$id' ";
-        $data_insumo = $this->select($tomar_datos);
-        $codigo_insumo =$data_insumo['codigo_insumo'];
-        $nombre_insumo =$data_insumo['nombre_insumo'];
-        $categoria_id =$data_insumo['categoria_id'];
-        $descripcion =$data_insumo['descripcion'];
-        $part_number_1 =$data_insumo['part_number_1'];
-        $part_number_2 =$data_insumo['part_number_2'];
-        $part_number_3 =$data_insumo['part_number_3'];
-        $part_number_4 =$data_insumo['part_number_4'];
-        $marca =$data_insumo['marca'];
-        $almacen_id =$data_insumo['almacen_id'];
-        $rack =$data_insumo['descripcion'];
-        $anaquel =$data_insumo['descripcion'];
-        $piso =$data_insumo['descripcion'];
-        $sector =$data_insumo['descripcion'];
-        $imagen_insumo =$data_insumo['imagen_insumo'];
-
+        $tomar_datos = "SELECT * FROM cotizacion WHERE id = '$id' ";
+        $data_cotizacion = $this->select($tomar_datos);
+        $numero_cotizacion =$data_cotizacion['numero_cotizacion'];
+        $cliente =$data_cotizacion['cliente_id'];
+        $monto =$data_cotizacion['monto'];
+        $asunto =$data_cotizacion['asunto'];
         $fecha =date("Y-m-d H:i:s");  
         $user = $_SESSION['id_usuario'];
         // validamos el evento con el estado
         if($estado==0){
             $evento ="ELIMINADO";
-            $query = "UPDATE insumo SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
+            $query = "UPDATE cotizacion SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
             $datos = array($fecha,$user,$estado,$id);
             $data = $this->save($query, $datos);
         }else{
             $evento ="RESTAURADO";
             // debe haber paso previo de validacion para no restaurar duplicados 
-            $validarDuplicado = "SELECT * FROM insumo WHERE (nombre_insumo = '$nombre_insumo' OR codigo_insumo='$codigo_insumo' ) AND estado=1";
+            $validarDuplicado = "SELECT * FROM cotizacion WHERE (numero_cotizacion = '$numero_cotizacion' OR cliente_id='$cliente' ) AND estado=1";
             $existe = $this->select($validarDuplicado);
             if (empty($existe)) {
-                $query = "UPDATE insumo SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
+                $query = "UPDATE cotizacion SET  updated_at = ?  ,user_m = ? ,estado = ? WHERE id = ?";
                 $datos = array($fecha,$user,$estado,$id);
                 $data = $this->save($query, $datos);
             }else{
@@ -122,8 +110,8 @@ class CotizacionModel extends Query
         }
         // aqui actualizamos los datos en estado 0 para elimminar logicamente la receta en vista 
         // aqui guardamos el evento en el historico
-        $query_h = "INSERT INTO h_insumo(insumo_id,codigo_insumo, nombre_insumo, categoria_id, marca, almacen_id, descripcion, part_number_1, part_number_2, part_number_3,part_number_4,rack, anaquel, piso,sector, imagen_insumo,user,evento,estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $datos_h = array($id,$codigo_insumo, $nombre_insumo, $categoria_id, $marca, $almacen_id, $descripcion,$part_number_1,$part_number_2,$part_number_3,$part_number_4, $rack, $anaquel, $piso, $sector , $imagen_insumo,$user,$evento,$estado );
+        $query_h = "INSERT INTO h_cotizacion(cotizacion_id,numero_cotizacion, cliente_id, monto, asunto,user,evento,estado) VALUES (?,?,?,?,?,?,?,?)";
+        $datos_h = array($id,$numero_cotizacion, $cliente, $monto, $asunto,$user,$evento,$estado );
         $data_h = $this->save($query_h, $datos_h);       
         return $data;
     }

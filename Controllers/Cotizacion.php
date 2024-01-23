@@ -27,12 +27,12 @@ class Cotizacion extends Controller
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div class="d-flex">
                 <button class="btn btn-primary" type="button" onclick="btnEditarCotizacion(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn btn-danger" type="button" onclick="btnEliminarInsumo(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-danger" type="button" onclick="btnEliminarCotizacion(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
                 <div/>';
             } else {
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
                 $data[$i]['acciones'] = '<div>
-                <button class="btn btn-success" type="button" onclick="btnReingresarInsumo(' . $data[$i]['id'] . ');"><i class="fa fa-reply-all"></i></button>
+                <button class="btn btn-success" type="button" onclick="btnReingresarCotizacion(' . $data[$i]['id'] . ');"><i class="fa fa-reply-all"></i></button>
                 <div/>';
             }
         }
@@ -99,9 +99,9 @@ class Cotizacion extends Controller
     }
     public function eliminar($id)
     {
-        $data = $this->model->estadoInsumo(0, $id);
+        $data = $this->model->estadoCotizacion(0, $id);
         if ($data == 1) {
-            $msg = array('msg' => 'Insumo dado de baja', 'icono' => 'success');
+            $msg = array('msg' => 'Cotizacion dado de baja', 'icono' => 'success');
         } else {
             $msg = array('msg' => 'Error al eliminar', 'icono' => 'error');
         }
@@ -110,11 +110,11 @@ class Cotizacion extends Controller
     }
     public function reingresar($id)
     {
-        $data = $this->model->estadoInsumo(1, $id);
+        $data = $this->model->estadoCotizacion(1, $id);
         if ($data == 1) {
             $msg = array('msg' => 'Insumo restaurada', 'icono' => 'success');
         } else if ($data == 2) {
-            $msg = array('msg' => 'ya existe un Insumo con ese codigo o nombre', 'icono' => 'error');
+            $msg = array('msg' => 'ya existe una Cotizacion con ese codigo o nombre', 'icono' => 'error');
         } else {
             $msg = array('msg' => 'Error al restaurar', 'icono' => 'error');
         }
