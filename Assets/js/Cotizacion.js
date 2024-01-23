@@ -1,4 +1,4 @@
-let tblInsumos; 
+let tblCotizacion; 
 function alertas(msg, icono) {
     Swal.fire({
         position: 'top-end',
@@ -8,11 +8,12 @@ function alertas(msg, icono) {
         timer: 3000
     })
 }
-$('.categoria').select2({
-    placeholder: 'Buscar Categoria',
+
+$('.cliente').select2({
+    placeholder: 'Buscar Ciente',
     minimumInputLength: 2,
     ajax: {
-        url: base_url + 'Insumos/buscarCategoria',
+        url: base_url + 'Cotizacion/buscarCliente',
         dataType: 'json',
         delay: 250,
         data: function (params) {
@@ -29,34 +30,12 @@ $('.categoria').select2({
     }
 });
 // para borrar lo cargado de forma predefinada 
-$('.categoria').on('select2:open', function (e) { 
-    $('.categoria').val(null).trigger('change');
+$('.cliente').on('select2:open', function (e) { 
+    $('.cliente').val(null).trigger('change');
 });
 
-$('.almacen').select2({
-    placeholder: 'Buscar Almacen',
-    minimumInputLength: 2,
-    ajax: {
-        url: base_url + 'Insumos/buscarAlmacen',
-        dataType: 'json',
-        delay: 250,
-        data: function (params) {
-            return {
-                q: params.term               
-            };
-        },
-        processResults: function (data) {
-            return {
-                results: data
-            };
-        },
-        cache: true
-    }
-});
-// para borrar lo cargado de forma predefinada 
-$('.almacen').on('select2:open', function (e) { 
-    $('.almacen').val(null).trigger('change');
-});
+
+
 
 $(document).on('click','#btnCategoria',function(){
     document.getElementById("title1").textContent = "Nueva Categoria";
@@ -116,16 +95,7 @@ function registrarCategoria(e) {
         }
     }
 }
-/*
-function frmCategorias() {
-    document.getElementById("title1").textContent = "Nueva Categoria";
-    document.getElementById("btnAccion1").textContent = "Registrar";
-    document.getElementById("frmCategorias").reset();
-    document.getElementById("id1").value = "";
-    $("#nuevoCategoria").modal("show");
-}
 
-*/
 document.addEventListener("DOMContentLoaded", function(){
     const language = {
         "decimal": "",
@@ -176,29 +146,26 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         ]
 
-        tblInsumos = $('#tblInsumos').DataTable({
+        tblCotizacion = $('#tblCotizacion').DataTable({
         ajax: {
-            url: base_url + "Insumos/listar",
+            url: base_url + "Cotizacion/listar",
             dataSrc: ''
         },
         columns: [{
                 'data': 'id'
             },
             {
-                'data': 'codigo_insumo'
+                'data': 'numero_cotizacion'
             },
             {
-                'data': 'nombre_insumo'
+                'data': 'cliente'
             },
             {
-                'data': 'nombre_categoria'
+                'data': 'monto'
             },
             {
-                'data': 'nombre_almacen'
-            },
-            {
-                'data': 'foto'
-            },           
+                'data': 'asunto'
+            },          
             {
                 'data': 'estado'
             },
@@ -215,70 +182,43 @@ document.addEventListener("DOMContentLoaded", function(){
 
 })
 
-function previewI(e) {
-    var input = document.getElementById('imagen');
-    var filePath = input.value;
-    var extension = /(\.png|\.jpeg|\.jpg)$/i;
-    if (!extension.exec(filePath)) {
-        alertas('Seleccione un archivo valido', 'warning');
-        deleteImg();
-        return false;
-    }else{
-        const url = e.target.files[0];
-        const urlTmp = URL.createObjectURL(url);
-        document.getElementById("img-preview").src = urlTmp;
-        document.getElementById("icon-image").classList.add("d-none");
-        document.getElementById("icon-cerrar").innerHTML = `
-        <button class="btn btn-danger" onclick="deleteImg()"><i class="fa fa-times-circle"></i></button>
-        `;
-    }
 
-}
 
-function deleteImg() {
-    document.getElementById("icon-cerrar").innerHTML = '';
-    document.getElementById("icon-image").classList.remove("d-none");
-    document.getElementById("img-preview").src = '';
-    document.getElementById("imagen").value = '';
-    document.getElementById("foto_actual").value = '';
-}
 
-function frmInsumos() {
-    document.getElementById("title").textContent = "Nuevo Insumo";
+function frmCotizacion() {
+    document.getElementById("title").textContent = "Nuevo Cotizacion";
     document.getElementById("btnAccion").textContent = "Registrar";
-    document.getElementById("frmInsumo").reset();
+    document.getElementById("frmCotizacion").reset();
     document.getElementById("id").value = "";
-    $("#nuevoInsumo").modal("show");
-    var newOptionC = new Option("sin categoria", 1,false,false);
-    $('.categoria').append(newOptionC).trigger("change");
-    $('.categoria').val(1).trigger('change');
-    var newOptionA = new Option("Almacen General", 1,false,false);
-    $('.almacen').append(newOptionA).trigger("change");
-    deleteImg();
+    $("#nuevoCotizacion").modal("show");
+    var newOptionC = new Option("sin registro", 1,false,false);
+    $('.cliente').append(newOptionC).trigger("change");
+    $('.cliente').val(1).trigger('change');
+
 }
 
 
-function registrarInsumo(e) {
+function registrarCotizacion(e) {
     e.preventDefault();
-    const codigoInsumo = document.getElementById("codigoInsumo");
-    const nombreInsumo = document.getElementById("nombreInsumo");
-    const categoria = document.getElementById("categoria");
-    const almacen = document.getElementById("almacen");
+    const codigoCotizacion = document.getElementById("codigoCotizacion");
+    const cliente = document.getElementById("cliente");
+    const monto = document.getElementById("monto");
+    const asunto = document.getElementById("asunto");
 
-    if (codigoInsumo.value == '' || nombreInsumo.value == '' || categoria.value == ''
-    || almacen.value == '' ) {
+    if (codigoCotizacion.value == '' || cliente.value == '' || monto.value == ''
+    || asunto.value == '' ) {
         alertas('Todo los campos * son requeridos', 'warning');
     } else {
-        const url = base_url + "Insumos/registrar";
-        const frm = document.getElementById("frmInsumo");
+        const url = base_url + "Cotizacion/registrar";
+        const frm = document.getElementById("frmCotizacion");
         const http = new XMLHttpRequest();
         http.open("POST", url, true);
         http.send(new FormData(frm));
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const res = JSON.parse(this.responseText);
-                $("#nuevoInsumo").modal("hide");
-                tblInsumos.ajax.reload();
+                $("#nuevoCotizacion").modal("hide");
+                tblCotizacion.ajax.reload();
                 frm.reset();
                 alertas(res.msg, res.icono);
             }
@@ -286,11 +226,11 @@ function registrarInsumo(e) {
     }
 }
 
-function btnEditarInsumo(id) {
+function btnEditarCotizacion(id) {
 
-    document.getElementById("title").textContent = "Actualizar Insumo";
+    document.getElementById("title").textContent = "Actualizar Cotizacion";
     document.getElementById("btnAccion").textContent = "Modificar";
-    const url = base_url + "Insumos/editar/" + id;
+    const url = base_url + "Cotizacion/editar/" + id;
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
     http.send();
@@ -299,35 +239,16 @@ function btnEditarInsumo(id) {
             const res = JSON.parse(this.responseText);
             //console.log(res);
             document.getElementById("id").value = res.id;
-            document.getElementById("codigoInsumo").value = res.codigo_insumo;
+            document.getElementById("codigoCotizacion").value = res.numero_cotizacion;
             // ESTE SECTOR ACUMULA LA OPCION SELECCIONADA EN EL SELECT
-            var newOptionC= new Option(res.textCategoria, res.categoria_id,false,false);
+            var newOptionC= new Option(res.textCliente, res.cliente_id,false,false);
             //agregara option en el select
-            $('.categoria').append(newOptionC).trigger("change");
+            $('.cliente').append(newOptionC).trigger("change");
             //selecciona esa opcion 
-            $('.categoria').val(res.categoria_id).trigger('change');
-            var newOptionA = new Option(res.textAlmacen, res.almacen_id,false,false);
-            $('.almacen').append(newOptionA).trigger("change");
-            $('.almacen').val(res.almacen_id).trigger('change');           
-            document.getElementById("nombreInsumo").value = res.nombre_insumo;
-            document.getElementById("marcaInsumo").value = res.marca;
-            document.getElementById("descripcionInsumo").value = res.descripcion;
-            document.getElementById("partNumber1").value = res.part_number_1;
-            document.getElementById("partNumber2").value = res.part_number_2;
-            document.getElementById("partNumber3").value = res.part_number_3;
-            document.getElementById("partNumber4").value = res.part_number_4;
-            document.getElementById("rack").value = res.rack;
-            document.getElementById("anaquel").value = res.anaquel;
-            document.getElementById("piso").value = res.piso;
-            document.getElementById("sector").value = res.sector;
-
-            document.getElementById("img-preview").src = base_url + 'Assets/img/insumos/'+ res.imagen_insumo; 
-            document.getElementById("icon-cerrar").innerHTML = `
-            <button class="btn btn-danger" onclick="deleteImg()">
-            <i class="fa fa-times-circle"></i></button>`;
-            document.getElementById("icon-image").classList.add("d-none");
-            document.getElementById("foto_actual").value = res.imagen_insumo;
-            $("#nuevoInsumo").modal("show");
+            $('.cliente').val(res.cliente_id).trigger('change');    
+            document.getElementById("monto").value = res.monto;
+            document.getElementById("asunto").value = res.asunto;
+            $("#nuevoCotizacion").modal("show");
         }
     }
 }
