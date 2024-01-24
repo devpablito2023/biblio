@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'id'},
             {'data': 'usuario'},
             {'data': 'nombre'},
+            {'data': 'nombres'},
+            {'data': 'correo_envio'},
             {'data': 'estado'},
             {'data': 'acciones'}
         ],

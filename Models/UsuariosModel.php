@@ -8,12 +8,12 @@ class UsuariosModel extends Query{
     public function getUsuario($usuario, $clave)
     {
         $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave' AND estado = 1";
-        $data = $this->select($sql);
+        $data = $this->selectAll($sql);
         return $data;
     }
     public function getUsuarios()
     {
-        $sql = "SELECT * FROM usuarios";
+        $sql = "select u.*, e.nombres from usuarios u INNER JOIN empleado  e on u.empleado_id= e.id ";
         $data = $this->selectAll($sql);
         return $data;
     }

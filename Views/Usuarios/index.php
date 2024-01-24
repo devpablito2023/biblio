@@ -16,6 +16,8 @@
                                 <th>Id</th>
                                 <th>Usuario</th>
                                 <th>Nombre</th>
+                                <th>empleado_id</th>
+                                <th>correo</th>
                                 <th>Estado</th>
                                 <th></th>
                             </tr>
