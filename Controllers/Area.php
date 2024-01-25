@@ -90,7 +90,7 @@ class Area extends Controller
                     $data2 = $this->model->h_area($id,$nombre_area,$descripcion_area,$usuario_activo,$evento );
                     $msg = array('msg' => 'Area modificado', 'icono' => 'success');
                 } else if($data==2){
-                    $msg = array('msg' => 'ya existe una categoria con ese nombre', 'icono' => 'error');
+                    $msg = array('msg' => 'ya existe una categoria con ese nombre', 'icono' => 'error');////
 
                 }
                 
