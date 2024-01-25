@@ -24,9 +24,59 @@ class Area extends Controller
     }
     public function listar()
     {
-        $data = $this->model->getArea();
+       // $data = $this->model->getArea();
 
+      // $data =[];
+      //json
+      /*
+       $data[0]['id']=1;
+       $data[0]['area']="tecnica";
+       $data[0]['estado']=1;
+
+       $data[1]['id']=2;
+       $data[1]['area']="administrativa";
+       $data[1]['estado']=1;
+*/
+       $data1 = json_encode(
+        array(
+            0 => array(
+                'id' => 1,
+                'area' => "tecnica",
+                'estado' => 1,
+
+                ),
+                
+            1 => array(
+                'id' => 2,
+                'area' => "administrativa2",
+                'estado' => 1,
+
+            )
+        )
+    );
+    $data = json_decode($data1);
+    foreach( $data as $key => $value ) {
+        if( $value->estado == 1) {
+            $value->estado = '<span class="badge badge-success">Activo</span>';
+            $value->acciones = '<div>
+            <button class="btn btn-primary" type="button" onclick="btnEditarArea();"><i class="fa fa-pencil-square-o"></i></button>
+            <button class="btn btn-danger" type="button" onclick="btnEliminarArea();"><i class="fa fa-trash-o"></i></button>
+            <div/>';
+        }
+        else{
+            $value->estado = '<span class="badge badge-danger">Eliminado</span>';
+            $value->acciones = '<div>
+            <button class="btn btn-success" type="button" onclick="btnReingresarArea();"><i class="fa fa-reply-all"></i></button>
+            <div/>';
+
+        }
+    }
+
+/*
         for ($i = 0; $i < count($data); $i++) {
+            
+
+
             if ($data[$i]['estado'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
@@ -40,6 +90,8 @@ class Area extends Controller
                 <div/>';
             }
         }
+
+        */
 
 
 

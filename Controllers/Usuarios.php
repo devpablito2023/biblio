@@ -58,10 +58,11 @@ class Usuarios extends Controller{
             $hash = hash("SHA256", $clave);
             //$hash = $clave;
             $data = $this->model->getUsuario($usuario, $hash);
+            echo var_dump($data, JSON_UNESCAPED_UNICODE);
             if ($data) {
-                $_SESSION['id_usuario'] = $data['id'];
-                $_SESSION['usuario'] = $data['usuario'];
-                $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['id_usuario'] = $data[0]['id'];
+                $_SESSION['usuario'] = $data[0]['usuario'];
+                $_SESSION['nombre'] = $data[0]['nombre'];
                 $_SESSION['activo'] = true;
                 $msg = array('msg' => 'Procesando', 'icono' => 'success');
             }else{
